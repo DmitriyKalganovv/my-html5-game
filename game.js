@@ -1,6 +1,16 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const restartButton = document.getElementById('restartButton');
+function resizeCanvas() {
+    canvas.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    canvas.height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    // Вызовите здесь любую функцию, необходимую для перенастройки игры
+    resetGame(); // Это может включать перезапуск или перенастройку игры
+}
+
+// Вызываем функцию resizeCanvas при загрузке страницы и при изменении размера окна
+window.addEventListener('resize', resizeCanvas);
+window.addEventListener('load', resizeCanvas);
 
 let snake = [{ x: 200, y: 200 }, { x: 190, y: 200 }, { x: 180, y: 200 }];
 let dx = 10;
