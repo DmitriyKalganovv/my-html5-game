@@ -144,7 +144,7 @@ function changeDirection(event) {
 function gameLoop() {
     if (didGameEnd()) {
         ctx.fillStyle = 'black';
-        ctx.font = '36px Arial';
+        ctx.font = '24px Arial'; // Уменьшите размер шрифта здесь
         ctx.fillText("Игра окончена", canvas.width / 4, canvas.height / 2);
         restartButton.style.display = 'block';
         return;
