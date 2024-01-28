@@ -3,10 +3,15 @@
 <head>
     <title>Змейка на Canvas</title>
     <style>
+        body {
+            margin: 0;
+            overflow: hidden; /* Убирает прокрутку, если холст больше окна */
+        }
         canvas {
             background-color: #f0f0f0;
-            display: block;
-            margin: auto;
+            display: block; /* Убирает лишний отступ снизу */
+            max-width: 100%; /* Ограничивает ширину, сохраняя аспект */
+            height: auto; /* Автоматическая высота для сохранения пропорций */
         }
         #restartButton {
             display: none;
