@@ -158,6 +158,40 @@ function gameLoop() {
         gameLoop();
     }, 100);
 }
+function getTouchPos(canvasDom, touchEvent) {
+    var rect = canvasDom.getBoundingClientRect();
+    return {
+        x: touchEvent.touches[0].clientX - rect.left,
+        y: touchEvent.touches[0].clientY - rect.top
+    };
+}
+// Функция для изменения направления змейки на основе сенсорного ввода
+function handleTouchMove(event) {
+    var touchPos = getTouchPos(canvas, event);
+    var xDiff = touchPos.x - canvas.width / 2;
+    var yDiff = touchPos.y - canvas.height / 2;
+
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        if (xDiff > 0 && dx !== -gridSize) {
+            dx = gridSize; // Двигаться вправо
+            dy = 0;
+        } else if (dx !== gridSize) {
+            dx = -gridSize; // Двигаться влево
+            dy = 0;
+        }
+    } else {
+        if (yDiff > 0 && dy !== -gridSize) {
+            dy = gridSize; // Двигаться вниз
+            dx = 0;
+        } else if (dy !== gridSize) {
+            dy = -gridSize; // Двигаться вверх
+            dx = 0;
+        }
+    }
+    event.preventDefault();
+}
+canvas.addEventListener('touchstart', handleTouchMove, false);
+canvas.addEventListener('touchmove', handleTouchMove, false);
 
 document.addEventListener("keydown", changeDirection);
 
